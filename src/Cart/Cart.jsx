@@ -1,19 +1,19 @@
 import React from 'react'
 import styled from 'styled-components'
-import Sidebar from 'react-sidebar'
+// import Sidebar from 'react-sidebar'
 import menu from './img/menu.png'
 import close from './img/close.png'
 import cart from './img/cart.png'
 
 
 const Side = styled.div`
-/* position: fixed;
-right:-250px;
+/* position: fixed; */
+/* right:-250px; */
 width:250px;
-height:100%;
+height:100vh;
 padding: 0px 10px;
 background-color:red;
-text-align: left; */
+text-align: left;
 `
 
 

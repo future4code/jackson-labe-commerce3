@@ -4,7 +4,7 @@ const FiltroEntreLinhas = styled.div`
   margin: 10px 0;
 `
 const FiltroGeral = styled.div`
-position: fixed;
+/* position: fixed; */
 width: 10vw; 
 height:100%;
 padding:10px;
