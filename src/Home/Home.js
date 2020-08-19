@@ -27,11 +27,11 @@ export class Home extends React.Component {
     }
 
     render() {
-        {this.state.produtos.length <= 0 && this.setState({produtosHome: [{id: this.state.prodID + 1, name: 'Nome do Produto', imgUrl:'https://picsum.photos/200/150', price: 219.9}], prodID: this.state.prodID + 1})}
+        {this.state.produtosHome.length <= 0 && this.setState({produtosHome: [{id: this.state.prodID + 1, name: 'Nome do Produto', imgUrl:'https://picsum.photos/200/150', price: 219.9}], prodID: this.state.prodID + 1})}
         
         let produtosNova
         if(this.state.produtosHome.length > 0){
-            produtosNova = this.state.produtos.map((produto)=>{
+            produtosNova = this.state.produtosHome.map((produto)=>{
                 return(
                     <CardProduto
                         key={produto.id}

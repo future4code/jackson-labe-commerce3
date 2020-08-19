@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import Cart from './Cart/Cart';
 import './Cart/style.css'
-import { CardProduto } from './CardProduto/CardProduto'
+// import { CardProduto } from './CardProduto/CardProduto'
 import { Home } from './Home/Home';
 import Filtro from "./Filtro";
 
@@ -10,9 +10,9 @@ import Filtro from "./Filtro";
 function App() {
   return (
     <div className="App">
-      <Cart />
-      <Home></Home>
       <Filtro />
+      <Home></Home>
+      <Cart />
     </div>
   );
 }
