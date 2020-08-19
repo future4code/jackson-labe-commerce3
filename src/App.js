@@ -1,19 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Cart from './Cart/Cart';
+import './Cart/style.css'
+import { CardProduto } from './CardProduto/CardProduto'
+import { Home } from './Home/Home';
 import Filtro from "./Filtro";
 
-class App extends React.Component{
-  render(){
-    return (
-      <div className="App">
-        <Filtro />
 
-        
-      </div>
-    );
-  }
-
+function App() {
+  return (
+    <div className="App">
+      <Cart />
+      <Home></Home>
+      <Filtro />
+    </div>
+  );
 }
 
 export default App;
