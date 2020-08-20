@@ -12,6 +12,10 @@ const HomeBox = styled.main`
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
+    
+/* com o width deixei ele com o tamanho de 89% sombrando 11% para o filtro, coloquei o height porque ate o card do produto ia até o final da tela, usei para testes */
+    width:89%;
+    height:100%;
 `
 
 
