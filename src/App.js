@@ -7,6 +7,8 @@ import styled from 'styled-components'
 import { Home } from './Home/Home';
 import Filtro from "./Filtro";
 
+
+
 // Estilização do botão
 const CartIcon = styled.div`
   display:flex;
@@ -30,7 +32,8 @@ img {
   margin: 2px;
   }
 }
-`// Fim Botão
+`
+// Fim Botão
 
 export default class App extends Component {
   state = {
@@ -47,10 +50,204 @@ export default class App extends Component {
   render() {
     return (
       <div className="App">
+{/* ------ THIAGO --------------------- */}
         <Filtro />
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{/* ------ RAPHAEL --------------------- */}
         <Home></Home>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{/* ------ MATHEUS --------------------- */}
         {/* lógica de click */}
         {this.state.sidebarOpen && (
           <Cart />
@@ -59,7 +256,17 @@ export default class App extends Component {
         <CartIcon onClick={this.onSidebarOpen}>
           <img src={cart} alt="" />
         </CartIcon>
-        
+
+
+
+
+
+
+
+
+
+
+
       </div>
     );
   }

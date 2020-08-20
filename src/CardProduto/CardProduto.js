@@ -10,10 +10,9 @@ const ProdBox = styled.div`
     max-width: 300px;
     /* min-height: 100px; */
     padding: 4px;
-    border: 2px dotted coral;
-    background-color: rgb(252,252,252);
-    margin: 20px auto;
-    flex-grow:1;
+    border: 1px solid rgb(240,240,240);
+    box-shadow: 0 2px 3px rgb(160,160,160);
+    background-color: rgb(250,250,250);
 `
 
 const ProdImg = styled.img`
@@ -35,13 +34,21 @@ const ProdPreco = styled.p`
 
 const ProdBtn = styled.button`
     box-sizing: border-box;
-    border: none;
     outline: none;
+    border: 2px solid rgb(10,10,10);
     background-color: rgb(10,10,10);
     color: white;
-    padding: 10px;
+    padding: 8px;
     width: 100%;
     font-size: 1rem;
+    transition: 0.3s;
+    cursor: pointer;
+
+    :hover{
+        background-color: rgb(250,250,250);
+        color: rgb(10,10,10);
+    }
+
 `
 
 
@@ -56,7 +63,7 @@ export class CardProduto extends React.Component {
                 <ProdNome>{this.props.prodNome}</ProdNome>
                 <ProdPreco>{prodPreco}</ProdPreco>
                 <ProdBtn
-                    onClick={this.props.adicionarCarrinho}
+                    onClick={this.props.cartAdicionar}
                 >
                     Adicionar ao Carrinho
                 </ProdBtn>
