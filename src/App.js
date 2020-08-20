@@ -14,13 +14,13 @@ const CartIcon = styled.div`
   display:flex;
   justify-items:center;
   align-items:center;
-
   position:fixed;
   bottom: 40px;
   right: 40px;
   border: 3px solid gainsboro;
   border-radius: 50%;
   background-color: rgba(36,44,46, 0.9) ;
+  cursor: pointer;
 
 img {
   width: 80px;
@@ -249,9 +249,9 @@ export default class App extends Component {
 
 {/* ------ MATHEUS --------------------- */}
         {/* lógica de click */}
-        {this.state.sidebarOpen && (
-          <Cart />
-        )}
+        {this.state.sidebarOpen ? 
+          <Cart /> : null
+        }
         
         <CartIcon onClick={this.onSidebarOpen}>
           <img src={cart} alt="" />
