@@ -1,12 +1,11 @@
 import React, { useRef } from 'react'
 import styled from 'styled-components'
-import CartI from '../Cart/CartI'
-import Home from '../Home/Home'
+
 
 const Side = styled.div`
 background-color: whitesmoke;
-/* width:250px; */
-height:100vh;
+width:20%;
+/* height:100vh; */
 padding: 0px 10px;
 text-align: left;
 border-left: 2px black solid;
@@ -49,7 +48,6 @@ export default class Cart extends React.Component {
     }
 
     render() {
-        const somas = this.soma()
         const produtoPego = this.pegarProduto()
         const valT = this.valT()
         console.log(valT)

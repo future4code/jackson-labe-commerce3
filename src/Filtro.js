@@ -7,10 +7,8 @@ const FiltroGeral = styled.div`
 /* position: fixed; */
 
 /* width: 10vw;  coloquei o codigo abaixo para renderizar o tamanho na tela para testar, */ 
-width: 11%;
+width: 20%;
 
-/* ajustei para pegar a tela até embaixo, mas não sei se continua funcionando quando adiciona varios cards na seção produtos */
-height:97vh;
 /* fim */
 padding:10px;
 text-align: left;

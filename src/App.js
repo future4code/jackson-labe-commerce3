@@ -94,6 +94,12 @@ export default class App extends Component {
     console.log(novoCart)
   }
 
+
+  ordenarProdutos = (event) => {
+    // console.log(`ordenarProdutos: ${nome}`)
+    console.log(event.target.value)
+  }
+
   
   cartExcluir = (id) => {
     const produtosCartNovo = [...this.state.produtosCart]
@@ -124,7 +130,7 @@ export default class App extends Component {
       // console.log(`produtosHomeNovo ${ produto.name}`)
       if((produto.price >= Number(this.state.valorMinimo) && produto.price <= Number(this.state.valorMaximo))
           &&
-          (this.state.buscarProduto === '' || produto.name === this.state.buscarProduto)){
+          (this.state.buscarProduto === '' || produto.name.toUpperCase() === this.state.buscarProduto.toUpperCase())){
         return true
       } else {
         return false
@@ -148,6 +154,7 @@ export default class App extends Component {
         <Home
           produtosHome={produtosHomeNovo}
           cartAdicionar={this.cartAdicionar}
+          ordenarProdutos={this.ordenarProdutos}
         ></Home>
 
         {/* lógica de click */}
@@ -161,7 +168,7 @@ export default class App extends Component {
       
       
         <CartIcon onClick={this.onSidebarOpen} >
-         <span>{somas}</span>
+         {somas > 0 && <span>{somas}</span>}
           <img src={cart} alt="" />
         </CartIcon>
 
