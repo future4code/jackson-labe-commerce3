@@ -7,7 +7,7 @@ const ProdBox = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    max-width: 300px;
+    /* max-width: 300px; */
     /* min-height: 100px; */
     padding: 4px;
     border: 1px solid rgb(240,240,240);

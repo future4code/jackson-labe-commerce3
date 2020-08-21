@@ -50,61 +50,61 @@ export default class App extends Component {
 
   componentDidMount() {
     //Caso ainda não tenhamos nenhum produto na página, 12 produtos ficticios serão adicionados
-    if (this.state.produtosHome.length <= 0) {
-      for (let i = 1; i < 13; i++) {
-        this.setState((state, props) => ({
-          produtosHome: [...state.produtosHome, { id: state.prodID + 1, name: 'Nome do Produto', imgUrl: 'https://picsum.photos/200/150', price: 219.9 }]
-          , prodID: state.prodID + 1
-        })
-        )
+      if (this.state.produtosHome.length <= 0){
+          for(let i = 1; i<13;i++){
+              this.setState((state, props) => ({
+                  produtosHome: [...state.produtosHome,{id: state.prodID + 1, name: `Produto ${i}`, imgUrl:'https://picsum.photos/200/150', price: 219.9 + (i*2)}]
+                      , prodID: state.prodID + 1})
+              )
+          }
       }
-    }
   }
 
   onChangeValorMin = (event) => {
-    this.setState({ valorMinimo: event.target.value })
+    event.target.value === '' ?
+    this.setState({valorMinimo: -Infinity}) :
+    this.setState({valorMinimo: event.target.value})
   }
 
   onChangeValorMax = (event) => {
-    this.setState({ valorMaximo: event.target.value })
+    event.target.value === '' ?
+    this.setState({valorMaximo: Infinity}) :
+    this.setState({valorMaximo: event.target.value})
   }
 
   onChangeBuscarProduto = (event) => {
-    this.setState({ buscarProduto: event.target.value })
+    this.setState({buscarProduto: event.target.value})
   }
+
+
 
   cartAdicionar = (id) => {
-    console.log(`cartAdicionar (id: ${id})`)
-    const produtoAdicionado = this.state.produtosCart.findIndex((produto) => produto.id === id)
-    const produtosCartNovo = [...this.state.produtosCart]
-
-    console.log(produtosCartNovo)
-
-    if (produtoAdicionado > -1) {
-      produtosCartNovo[produtoAdicionado].quantidade += 1
+    const novoCart = [...this.state.produtosCart]
+    const produtoIndexCart = this.state.produtosCart.findIndex((produto) => produto.id === id)
+    
+    if(produtoIndexCart> -1) {
+      novoCart[produtoIndexCart].quantidade +=1
     } else {
-      let homeIndex = this.state.produtosHome.findIndex((produtos) => produtos.id === id)
+      let homeIndex = this.state.produtosHome.findIndex((produto) => produto.id === id)
       let novoProduto = this.state.produtosHome[homeIndex]
-      produtosCartNovo.push({ ...novoProduto, quantidade: 1 })
+      novoCart.push({...novoProduto, quantidade:1})
     }
 
-    this.setState({
-      produtosCart: produtosCartNovo
-    })
+    this.setState({produtosCart: novoCart})
+    console.log(novoCart)
   }
 
-
+  
   cartExcluir = (id) => {
     const produtosCartNovo = [...this.state.produtosCart]
 
     const produtoExcluido = produtosCartNovo.findIndex((produto) => produto.id === id)
-console.log(produtoExcluido)
+    console.log(produtoExcluido)
     produtosCartNovo.splice(produtoExcluido, 1)
 
-    this.setState({
-      produtosCart: produtosCartNovo
-    })
+    this.setState({produtosCart: produtosCartNovo})
   }
+
 
   //click botão
   onSidebarOpen = () => {
@@ -115,16 +115,16 @@ console.log(produtoExcluido)
 
   soma () {
     return this.state.produtosCart.reduce((e1, e2)=>{
-        
-
         return e1 + e2.quantidade
-        
     },0)
   }
 
   render() {
     const produtosHomeNovo = this.state.produtosHome.filter((produto) => {
-      if (produto.price >= this.state.valorMinimo && produto.price <= this.state.valorMaximo) {
+      // console.log(`produtosHomeNovo ${ produto.name}`)
+      if((produto.price >= Number(this.state.valorMinimo) && produto.price <= Number(this.state.valorMaximo))
+          &&
+          (this.state.buscarProduto === '' || produto.name === this.state.buscarProduto)){
         return true
       } else {
         return false
@@ -134,11 +134,13 @@ console.log(produtoExcluido)
     const somas = this.soma()
     return (
       <div className="App">
-        {/* ------ THIAGO --------------------- */}
         <Filtro
           onChangeValorMin={this.onChangeValorMin}
           onChangeValorMax={this.onChangeValorMax}
           onChangeBuscarProduto={this.onChangeBuscarProduto}
+          valorMin={this.state.valorMinimo}
+          valorMax={this.state.valorMaximo}
+          valorBusca={this.state.valorBusca}
         />
 
 
@@ -234,11 +236,12 @@ console.log(produtoExcluido)
 
 
 
-        {/* ------ RAPHAEL --------------------- */}
-        <Home
-          produtosHome={produtosHomeNovo}
-          cartAdicionar={this.cartAdicionar}>
-        </Home>
+
+{/* ------ RAPHAEL --------------------- */}
+  <Home
+    produtosHome={produtosHomeNovo}
+    cartAdicionar={this.cartAdicionar}
+  ></Home>
 
 
 
