@@ -41,7 +41,7 @@ export default class App extends Component {
     produtosHome: [],
     produtosCart: [],
 
-    valorMinimo:-Infinity,
+    valorMinimo: -Infinity,
     valorMaximo: Infinity,
     buscarProduto: '',
 
@@ -94,20 +94,29 @@ export default class App extends Component {
     console.log(novoCart)
   }
 
-
   
   cartExcluir = (id) => {
-    const produtoExcluido = this.state.produtosCart.filter((produto) => {
-      if (produto.id === id){return false} else {return true}
-    })
-    const produtosCartNovo = [...produtoExcluido]
+    const produtosCartNovo = [...this.state.produtosCart]
+
+    const produtoExcluido = produtosCartNovo.findIndex((produto) => produto.id === id)
+    console.log(produtoExcluido)
+    produtosCartNovo.splice(produtoExcluido, 1)
+
+    this.setState({produtosCart: produtosCartNovo})
   }
 
-//click botão
+
+  //click botão
   onSidebarOpen = () => {
     this.setState({
       sidebarOpen: !this.state.sidebarOpen
     })
+  }
+
+  soma () {
+    return this.state.produtosCart.reduce((e1, e2)=>{
+        return e1 + e2.quantidade
+    },0)
   }
 
   render() {
@@ -122,11 +131,9 @@ export default class App extends Component {
       }
     })
 
-    // console.log(produtosHomeNovo)
-
+    const somas = this.soma()
     return (
       <div className="App">
-{/* ------ THIAGO --------------------- */}
         <Filtro
           onChangeValorMin={this.onChangeValorMin}
           onChangeValorMax={this.onChangeValorMax}
@@ -229,11 +236,12 @@ export default class App extends Component {
 
 
 
+
 {/* ------ RAPHAEL --------------------- */}
-        <Home
-          produtosHome={produtosHomeNovo}
-          cartAdicionar={this.cartAdicionar}
-        ></Home>
+  <Home
+    produtosHome={produtosHomeNovo}
+    cartAdicionar={this.cartAdicionar}
+  ></Home>
 
 
 
@@ -333,17 +341,23 @@ export default class App extends Component {
 
 
 
-{/* ------ MATHEUS --------------------- */}
-        {/* lógica de click */}
-        {this.state.sidebarOpen ? 
-          <Cart /> : null
-        }
+        {/* ------ MATHEUS --------------------- */}
+
         
-        <CartIcon onClick={this.onSidebarOpen}>
+        {/* lógica de click */}
+        {this.state.sidebarOpen ?
+          <Cart
+            cartSx={this.state.produtosCart}
+            cartExcluir={this.cartExcluir}
+          /> : null
+        }
+
+        <CartIcon onClick={this.onSidebarOpen} >
+         <span>{somas}</span>
           <img src={cart} alt="" />
         </CartIcon>
 
-
+        {this.cartAdicionar ? <div>{this.produtosCartNovo}</div> : null}
 
 
 
