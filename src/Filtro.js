@@ -47,25 +47,21 @@ class Filtro extends React.Component{
     render(){
 
         return(
-
-
             <FiltroGeral>
                 <h1>Filtros</h1>
                 <FiltroEntreLinhas>
                 <label>Valor Mínimo</label>
-                <input type="number"></input>
+                <input type="number" onChange={this.props.onChangeValorMin} value={this.props.valorMin} min={0}></input>
                 </FiltroEntreLinhas>
                 <FiltroEntreLinhas>
                 <label>Valor Máximo</label>
-                <input type="number"></input>
+                <input type="number" onChange={this.props.onChangeValorMax} value={this.props.valorMax}></input>
                 </FiltroEntreLinhas>
                 <FiltroEntreLinhas>
                 <label>Buscar Produto</label>
-                <input type="text"></input>
+                <input type="text" onChange={this.props.onChangeBuscarProduto} value={this.props.valorBusca}></input>
                 </FiltroEntreLinhas>
             </FiltroGeral>
-
-
         )
     }
 
