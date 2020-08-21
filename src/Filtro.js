@@ -4,15 +4,10 @@ const FiltroEntreLinhas = styled.div`
   margin: 10px 0;
 `
 const FiltroGeral = styled.div`
-/* position: fixed; */
-
-/* width: 10vw;  coloquei o codigo abaixo para renderizar o tamanho na tela para testar, */ 
-width: 20%;
-
-/* fim */
-padding:10px;
-text-align: left;
-border:2px solid;
+  width: 20%;
+  padding:10px;
+  text-align: left;
+  border:2px solid;
 `
 
 class Filtro extends React.Component{

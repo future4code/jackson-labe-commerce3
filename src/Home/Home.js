@@ -10,6 +10,7 @@ const HomeBox = styled.main`
     grid-template-rows: auto auto;
     gap: 15px;
     padding: 0 0 0 20px;
+
 `
 
 const HomeHeader = styled.div`
