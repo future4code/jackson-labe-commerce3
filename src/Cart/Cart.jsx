@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 const Side = styled.div`
 background-color: whitesmoke;
-width:250px;
+/* width:250px; */
 height:100vh;
 padding: 0px 10px;
 text-align: left;
