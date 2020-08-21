@@ -1,10 +1,9 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import styled from 'styled-components'
-
 import close from '../Cart/img/close.png'
 
 const Side = styled.div`
-    background-color: whitesmoke;
+    background: whitesmoke;
     width:20%;
     font-family: 'Roboto', sans-serif;
     font-size:17px;
@@ -16,19 +15,29 @@ const Total = styled.p`
     font-weight: 200;
 `
 const Div1 = styled.div`
-display:flex;
-height:30px;
-align-items:center;
+    display:flex;
+    height:30px;
+    align-items:center;
 `
 const ButtonX = styled.img`
     position:relative;
     width:25px;
     margin-left: 7px;
     
+    
 :hover {
-    cursor:pointer;
-    transition: transform .8s ease-in;
-    transform: rotate(360deg);
+    @media (prefers-reduced-motion: no-preference){
+        
+        animation: Close-spin 5s  linear infinite;
+    }
+@keyframes Close-spin {
+    from {
+        transform: rotate(360deg);
+    }
+    to {
+        transform: rotate3d(0deg);
+    }
+}
 }
 `
 export default class Cart extends React.Component {
@@ -42,7 +51,7 @@ export default class Cart extends React.Component {
             return (
                 <Div1>
                     {produtoD}
-                    <ButtonX src={close} alt="" onClick={this.props.cartExcluir} />
+                    <ButtonX src={close} alt="" onClick={this.props.cartX} />
                 </Div1>
             )
         })

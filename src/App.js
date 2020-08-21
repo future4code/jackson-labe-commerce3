@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component } from 'react';
 import './App.css';
 import Cart from './Cart/Cart';
 import cart from './Cart/img/cart.png'
@@ -6,8 +6,6 @@ import styled from 'styled-components'
 // import { CardProduto } from './CardProduto/CardProduto'
 import { Home } from './Home/Home';
 import Filtro from "./Filtro";
-
-
 
 // Estilização do botão
 const CartIcon = styled.div`
