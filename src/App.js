@@ -19,13 +19,15 @@ const CartIcon = styled.div`
   right: 40px;
   border: 3px solid gainsboro;
   border-radius: 50%;
-  background-color: rgba(36,44,46, 0.9) ;
+  background-color: rgba(36, 44, 46, 0.9) ;
+  box-shadow: -3px 3px 3px rgba(160, 160, 160);
   cursor: pointer;
-
+  
 img {
-  width: 80px;
+  width: 95px;
   transition: all 0.5s;
   margin: -6px -5px -6px -6px;
+  /* z-index: 111; */
   :hover{
   transform: scale(0.9);
   transition: all 0.5s;
@@ -33,6 +35,23 @@ img {
   }
 }
 `
+const Somar = styled.span`
+  background-color:rgba(20,20,20, 0.8);
+  border: 3px solid gainsboro;
+  border-radius: 50%;
+  padding: 3px 11px;
+  width:10px;
+  font-size:20px;
+  z-index:1111;
+  position: absolute;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:white;
+  bottom:0;
+  left:0;
+`
+
 // Fim Botão
 
 export default class App extends Component {
@@ -50,30 +69,31 @@ export default class App extends Component {
 
   componentDidMount() {
     //Caso ainda não tenhamos nenhum produto na página, 12 produtos ficticios serão adicionados
-      if (this.state.produtosHome.length <= 0){
-          for(let i = 1; i<13;i++){
-              this.setState((state, props) => ({
-                  produtosHome: [...state.produtosHome,{id: state.prodID + 1, name: `Produto ${i}`, imgUrl:'https://picsum.photos/200/150', price: 219.9 + (i*2)}]
-                      , prodID: state.prodID + 1})
-              )
-          }
+    if (this.state.produtosHome.length <= 0) {
+      for (let i = 1; i < 13; i++) {
+        this.setState((state, props) => ({
+          produtosHome: [...state.produtosHome, { id: state.prodID + 1, name: `Produto ${i}`, imgUrl: 'https://picsum.photos/200/150', price: 219.9 + (i * 2) }]
+          , prodID: state.prodID + 1
+        })
+        )
       }
+    }
   }
 
   onChangeValorMin = (event) => {
     event.target.value === '' ?
-    this.setState({valorMinimo: -Infinity}) :
-    this.setState({valorMinimo: event.target.value})
+      this.setState({ valorMinimo: -Infinity }) :
+      this.setState({ valorMinimo: event.target.value })
   }
 
   onChangeValorMax = (event) => {
     event.target.value === '' ?
-    this.setState({valorMaximo: Infinity}) :
-    this.setState({valorMaximo: event.target.value})
+      this.setState({ valorMaximo: Infinity }) :
+      this.setState({ valorMaximo: event.target.value })
   }
 
   onChangeBuscarProduto = (event) => {
-    this.setState({buscarProduto: event.target.value})
+    this.setState({ buscarProduto: event.target.value })
   }
 
 
@@ -81,20 +101,20 @@ export default class App extends Component {
   cartAdicionar = (id) => {
     const novoCart = [...this.state.produtosCart]
     const produtoIndexCart = this.state.produtosCart.findIndex((produto) => produto.id === id)
-    
-    if(produtoIndexCart> -1) {
-      novoCart[produtoIndexCart].quantidade +=1
+
+    if (produtoIndexCart > -1) {
+      novoCart[produtoIndexCart].quantidade += 1
     } else {
       let homeIndex = this.state.produtosHome.findIndex((produto) => produto.id === id)
       let novoProduto = this.state.produtosHome[homeIndex]
-      novoCart.push({...novoProduto, quantidade:1})
+      novoCart.push({ ...novoProduto, quantidade: 1 })
     }
 
-    this.setState({produtosCart: novoCart})
+    this.setState({ produtosCart: novoCart })
     console.log(novoCart)
   }
 
-  
+
   cartExcluir = (id) => {
     const produtosCartNovo = [...this.state.produtosCart]
 
@@ -102,7 +122,7 @@ export default class App extends Component {
     console.log(produtoExcluido)
     produtosCartNovo.splice(produtoExcluido, 1)
 
-    this.setState({produtosCart: produtosCartNovo})
+    this.setState({ produtosCart: produtosCartNovo })
   }
 
 
@@ -113,18 +133,18 @@ export default class App extends Component {
     })
   }
 
-  soma () {
-    return this.state.produtosCart.reduce((e1, e2)=>{
-        return e1 + e2.quantidade
-    },0)
+  soma() {
+    return this.state.produtosCart.reduce((e1, e2) => {
+      return e1 + e2.quantidade
+    }, 0)
   }
 
   render() {
     const produtosHomeNovo = this.state.produtosHome.filter((produto) => {
       // console.log(`produtosHomeNovo ${ produto.name}`)
-      if((produto.price >= Number(this.state.valorMinimo) && produto.price <= Number(this.state.valorMaximo))
-          &&
-          (this.state.buscarProduto === '' || produto.name === this.state.buscarProduto)){
+      if ((produto.price >= Number(this.state.valorMinimo) && produto.price <= Number(this.state.valorMaximo))
+        &&
+        (this.state.buscarProduto === '' || produto.name === this.state.buscarProduto)) {
         return true
       } else {
         return false
@@ -143,8 +163,8 @@ export default class App extends Component {
           valorBusca={this.state.valorBusca}
         />
 
-      
-      
+
+
         <Home
           produtosHome={produtosHomeNovo}
           cartAdicionar={this.cartAdicionar}
@@ -154,14 +174,14 @@ export default class App extends Component {
         {this.state.sidebarOpen ?
           <Cart
             cartSx={this.state.produtosCart}
-            cartExcluir={this.cartExcluir}
+            cartX={this.cartExcluir}
           /> : null
         }
 
-      
-      
+
+
         <CartIcon onClick={this.onSidebarOpen} >
-         <span>{somas}</span>
+          {somas > 0 && <Somar>{somas}</Somar>}
           <img src={cart} alt="" />
         </CartIcon>
 
