@@ -54,7 +54,7 @@ const ProdBtn = styled.button`
 
 export class CardProduto extends React.Component {
     render(){
-        const prodPreco = `R$ ${Number(this.props.prodPreco)}`
+        const prodPreco = `R$ ${Number(this.props.prodPreco).toFixed(2)}`
         return(
             <ProdBox>
                 <ProdImg
@@ -71,5 +71,4 @@ export class CardProduto extends React.Component {
         )
     }
 }
-
 
