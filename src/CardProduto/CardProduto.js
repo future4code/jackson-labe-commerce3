@@ -9,6 +9,7 @@ const ProdBox = styled.div`
     justify-content: center;
     /* max-width: 300px; */
     /* min-height: 100px; */
+    max-height: 330px;
     padding: 4px;
     border: 1px solid rgb(240,240,240);
     box-shadow: 0 2px 3px rgb(160,160,160);

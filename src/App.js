@@ -65,14 +65,28 @@ export default class App extends Component {
     buscarProduto: '',
 
     prodID: 0,
+    selectValue: 'cresc',
   }
 
   componentDidMount() {
     //Caso ainda não tenhamos nenhum produto na página, 12 produtos ficticios serão adicionados
     if (this.state.produtosHome.length <= 0) {
+      let produtosNomes=['Uma coisa',
+                          'Esse é diferente',
+                          'Lorem Ipsum',
+                          'Mistica Escolha',
+                          'Super Surpresa',
+                          'Labenu Cargo Simples',
+                          'Tantra Fellings',
+                          'Veste bem',
+                          'Super Nova',
+                          'Massachusets Core',
+                          'Beach Style Yoga',
+                          'Birthday Choice',
+                        ]
       for (let i = 1; i < 13; i++) {
         this.setState((state, props) => ({
-          produtosHome: [...state.produtosHome, { id: state.prodID + 1, name: `Produto ${i}`, imgUrl: 'https://picsum.photos/200/150', price: 219.9 + (i * 2) }]
+          produtosHome: [...state.produtosHome, { id: state.prodID + 1, name: `${produtosNomes[i-1]} ${i<10?`0${i}`:i}`, imgUrl: `https://picsum.photos/200/150?a=${i}`, price: 219.9 + (i * 2) }]
           , prodID: state.prodID + 1
         })
         )
@@ -116,8 +130,7 @@ export default class App extends Component {
 
 
   ordenarProdutos = (event) => {
-    // console.log(`ordenarProdutos: ${nome}`)
-    console.log(event.target.value)
+    this.setState({selectValue: event.target.value})
   }
 
   
@@ -146,18 +159,24 @@ export default class App extends Component {
   }
 
   render() {
-    const produtosHomeNovo = this.state.produtosHome.filter((produto) => {
+    let produtosHomeNovo = this.state.produtosHome.filter((produto) => {
       // console.log(`produtosHomeNovo ${ produto.name}`)
       if((produto.price >= Number(this.state.valorMinimo) && produto.price <= Number(this.state.valorMaximo))
           &&
-          (this.state.buscarProduto === '' || produto.name.toUpperCase() === this.state.buscarProduto.toUpperCase())){
+          // (this.state.buscarProduto === '' || produto.name.toUpperCase() === this.state.buscarProduto.toUpperCase())){
+          (this.state.buscarProduto === '' || produto.name.toUpperCase().indexOf(this.state.buscarProduto.toUpperCase()) >= 0)){
         return true
       } else {
         return false
       }
     })
 
+    this.state.selectValue === 'cresc' ?
+    produtosHomeNovo.sort() :
+    produtosHomeNovo.sort((a, b)=>{return a - b})
+
     const somas = this.soma()
+
     return (
       <div className="App">
         <Filtro

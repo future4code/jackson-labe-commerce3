@@ -8,6 +8,7 @@ const FiltroGeral = styled.div`
   padding:10px;
   text-align: left;
   border:2px solid;
+  /* min-height: 100vh; */
 `
 
 class Filtro extends React.Component{
