@@ -7,10 +7,9 @@ const HomeBox = styled.main`
     box-sizing: border-box;
     width: 80%;
     display: grid;
-    grid-template-rows: auto auto;
+    grid-template-rows: 50px auto;
     gap: 15px;
     padding: 0 0 0 20px;
-
 `
 
 const HomeHeader = styled.div`
@@ -40,7 +39,7 @@ const HomeQtd = styled.p`
 const ProdBox = styled.div`
     box-sizing: border-box;
     display: grid;
-    grid-template: 1fr/repeat(4,1fr);
+    grid-template-columns: repeat(4,1fr);
     gap: 15px;
     padding: 0 10px 10px 10px;
 `
@@ -80,7 +79,7 @@ export class Home extends React.Component {
         return(
             <HomeBox>
                 <HomeHeader>
-                    <HomeQtd>Quantidade de Produtos {this.props.produtosHome.length}</HomeQtd>
+                    <HomeQtd>Quantidade de Produtos: {this.props.produtosHome.length}</HomeQtd>
                     <HomeSelect onChange={this.props.ordenarProdutos} name={'ordenarProdutos'}>
                         <option value={'cresc'}>Preço: Crescente</option>
                         <option value={'decresc'}>Preço: Decrescente</option>

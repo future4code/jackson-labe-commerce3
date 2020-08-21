@@ -11,6 +11,7 @@ const Side = styled.div`
     text-align: left;
     border-left: 2px black solid;
     padding: 0px 10px;
+    /* min-height: 100vh; */
 `
 const Total = styled.p`
     font-weight: 200;
