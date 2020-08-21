@@ -143,207 +143,13 @@ export default class App extends Component {
           valorBusca={this.state.valorBusca}
         />
 
+      
+      
+        <Home
+          produtosHome={produtosHomeNovo}
+          cartAdicionar={this.cartAdicionar}
+        ></Home>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-{/* ------ RAPHAEL --------------------- */}
-  <Home
-    produtosHome={produtosHomeNovo}
-    cartAdicionar={this.cartAdicionar}
-  ></Home>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        {/* ------ MATHEUS --------------------- */}
-
-        
         {/* lógica de click */}
         {this.state.sidebarOpen ?
           <Cart
@@ -352,20 +158,14 @@ export default class App extends Component {
           /> : null
         }
 
+      
+      
         <CartIcon onClick={this.onSidebarOpen} >
          <span>{somas}</span>
           <img src={cart} alt="" />
         </CartIcon>
 
         {this.cartAdicionar ? <div>{this.produtosCartNovo}</div> : null}
-
-
-
-
-
-
-
-
 
       </div>
     );
