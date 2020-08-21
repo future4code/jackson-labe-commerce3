@@ -1,5 +1,6 @@
 import React, { useRef } from 'react'
 import styled from 'styled-components'
+
 import close from '../Cart/img/close.png'
 
 const Side = styled.div`

@@ -5,19 +5,47 @@ import { CardProduto } from '../CardProduto/CardProduto'
 
 const HomeBox = styled.main`
     box-sizing: border-box;
-    border: 1px solid black;
-    /* min-height: 90vh; */
-    min-width: 200px;
+    width: 80%;
     display: grid;
-    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: auto auto;
     gap: 15px;
-    padding: 10px;
-    
-    
-/* com o width deixei ele com o tamanho de 89% sombrando 11% para o filtro, coloquei o height porque ate o card do produto ia até o final da tela, usei para testes */
-    width:85%;
-    /* height:100%; */
+    padding: 0 0 0 20px;
+
 `
+
+const HomeHeader = styled.div`
+    box-sizing: border-box;
+    /* display:grid;
+    grid-template: 1fr/1fr 1fr;
+    justify-items: start;
+    align-items: center; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+`
+
+const HomeSelect = styled.select`
+    margin: 0;
+    padding: 0;
+    outline-style:none;
+    outline: none;
+`
+
+const HomeQtd = styled.p`
+    margin: 0;
+    padding: 0;
+`
+
+const ProdBox = styled.div`
+    box-sizing: border-box;
+    display: grid;
+    grid-template: 1fr/repeat(4,1fr);
+    gap: 15px;
+    padding: 0 10px 10px 10px;
+`
+
+
 
 
 export class Home extends React.Component {
@@ -27,26 +55,10 @@ export class Home extends React.Component {
         prodID: 0,
     }
 
-    // componentDidMount() {
-    //   //Caso ainda não tenhamos nenhum produto na página, 12 produtos ficticios serão adicionados
-    //     if (this.state.produtosHome.length <= 0){
-    //         for(let i = 1; i<13;i++){
-    //             this.setState((state, props) => ({
-    //                 produtosHome: [...state.produtosHome,{id: state.prodID + 1, name: 'Nome do Produto', imgUrl:'https://picsum.photos/200/150', price: 219.9}]
-    //                     , prodID: state.prodID + 1})
-    //             )
-    //         }
-    //     }
-    //   //------------------
-
-
-    // }
-  
 
     adicionarCarrinho = (id) => {
         alert(`Adicionar Carrinho (id: ${id})`)
     }
-
 
     render() {
         let produtosNova
@@ -67,7 +79,16 @@ export class Home extends React.Component {
 
         return(
             <HomeBox>
-                {produtosNova}
+                <HomeHeader>
+                    <HomeQtd>Quantidade de Produtos {this.props.produtosHome.length}</HomeQtd>
+                    <HomeSelect onChange={this.props.ordenarProdutos} name={'ordenarProdutos'}>
+                        <option value={'cresc'}>Preço: Crescente</option>
+                        <option value={'decresc'}>Preço: Decrescente</option>
+                    </HomeSelect>
+                </HomeHeader>
+                <ProdBox>
+                    {produtosNova}
+                </ProdBox>
             </HomeBox>
         )
     }
