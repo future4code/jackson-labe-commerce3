@@ -1,14 +1,15 @@
 import React from 'react';
 import styled from "styled-components";
 const FiltroEntreLinhas = styled.div`
-  margin: 10px 0;
+margin: 10px 0;
 `
 const FiltroGeral = styled.div`
   width: 20%;
   padding:10px;
   text-align: left;
+  background-color:rgba(36, 44, 46, 0.8);
+  color:white;
   border:2px solid;
-  /* min-height: 100vh; */
 `
 
 class Filtro extends React.Component{

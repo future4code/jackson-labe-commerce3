@@ -86,7 +86,7 @@ export default class App extends Component {
                         ]
       for (let i = 1; i < 13; i++) {
         this.setState((state, props) => ({
-          produtosHome: [...state.produtosHome, { id: state.prodID + 1, name: `${produtosNomes[i-1]} ${i<10?`0${i}`:i}`, imgUrl: `https://picsum.photos/200/150?a=${i}`, price: 219.9 + (i * 2) }]
+          produtosHome: [...state.produtosHome, { id: state.prodID + 1, name: `${produtosNomes[i-1]} ${i<10?`0${i}`:i}`, imgUrl: `https://picsum.photos/200/150?a=${i}`, price: 119.9 + (i * 19) }]
           , prodID: state.prodID + 1
         })
         )
@@ -163,8 +163,7 @@ export default class App extends Component {
       // console.log(`produtosHomeNovo ${ produto.name}`)
       if((produto.price >= Number(this.state.valorMinimo) && produto.price <= Number(this.state.valorMaximo))
           &&
-          // (this.state.buscarProduto === '' || produto.name.toUpperCase() === this.state.buscarProduto.toUpperCase())){
-          (this.state.buscarProduto === '' || produto.name.toUpperCase().indexOf(this.state.buscarProduto.toUpperCase()) >= 0)){
+          (this.state.buscarProduto === '' || produto.name.toUpperCase().indexOf(this.state.buscarProduto.toUpperCase()) >= 0)) {
         return true
       } else {
         return false
