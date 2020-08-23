@@ -7,13 +7,16 @@ const ProdBox = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /* max-width: 300px; */
-    /* min-height: 100px; */
-    max-height: 330px;
     padding: 4px;
     border: 1px solid rgb(240,240,240);
-    box-shadow: 0 2px 3px rgb(160,160,160);
+    /* box-shadow: 0 2px 2px rgb(200,200,200); */
+    transition: 0.3s;
     background-color: rgb(250,250,250);
+
+    :hover{
+        border: 1px solid rgb(240,240,240);
+        box-shadow: 0px 3px 4px rgb(180,180,180);
+    }
 `
 
 const ProdImg = styled.img`
@@ -58,14 +61,10 @@ export class CardProduto extends React.Component {
         const prodPreco = `R$ ${Number(this.props.prodPreco).toFixed(2)}`
         return(
             <ProdBox>
-                <ProdImg
-                    src={this.props.prodImg}
-                ></ProdImg>
+                <ProdImg src={this.props.prodImg}></ProdImg>
                 <ProdNome>{this.props.prodNome}</ProdNome>
                 <ProdPreco>{prodPreco}</ProdPreco>
-                <ProdBtn
-                    onClick={this.props.cartAdicionar}
-                >
+                <ProdBtn onClick={this.props.cartAdicionar}>
                     Adicionar ao Carrinho
                 </ProdBtn>
             </ProdBox>
