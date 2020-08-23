@@ -69,29 +69,22 @@ export default class App extends Component {
 
   componentDidMount() {
     //Caso ainda não tenhamos nenhum produto na página, 12 produtos ficticios serão adicionados
-
-
     if (this.state.produtosHome.length <= 0) {
-      let produtosNomes = ['Uma coisa',
-        'Esse é diferente',
-        'Lorem Ipsum',
-        'Mistica Escolha',
-        'Super Surpresa',
-        'Labenu Cargo Simples',
-        'Tantra Fellings',
-        'Veste bem',
-        'Super Nova',
-        'Massachusets Core',
-        'Beach Style Yoga',
-        'Birthday Choice',
+      let produtosHomeNovo = [
+        { id: 1, name: `Uma Coisa`, imgUrl: `https://picsum.photos/200/150?a=1`, price: Math.random()*1000},
+        { id: 2, name: `Esse é diferente`, imgUrl: `https://picsum.photos/200/150?a=2`, price: Math.random()*1000 },
+        { id: 3, name: `Lorem Ipsum`, imgUrl: `https://picsum.photos/200/150?a=3`, price: Math.random()*1000},
+        { id: 4, name: `Mistica Escolha`, imgUrl: `https://picsum.photos/200/150?a=4`, price: Math.random()*1000},
+        { id: 5, name: `Super Surpresa`, imgUrl: `https://picsum.photos/200/150?a=5`, price: Math.random()*1000},
+        { id: 6, name: `Labenu Cargo Simples`, imgUrl: `https://picsum.photos/200/150?a=6`, price: Math.random()*1000},
+        { id: 7, name: `Tantra Feelings`, imgUrl: `https://picsum.photos/200/150?a=7`, price: Math.random()*1000},
+        { id: 8, name: `Veste Bem`, imgUrl: `https://picsum.photos/200/150?a=8`, price: Math.random()*1000},
+        { id: 9, name: `Super Nova`, imgUrl: `https://picsum.photos/200/150?a=9`, price: Math.random()*1000},
+        { id: 10, name: `Massachusets Core`, imgUrl: `https://picsum.photos/200/150?a=10`, price: Math.random()*1000},
+        { id: 11, name: `Beach Style Yoga`, imgUrl: `https://picsum.photos/200/150?a=11`, price: Math.random()*1000},
+        { id: 12, name: `Birthday Choice`, imgUrl: `https://picsum.photos/200/150?a=12`, price: Math.random()*1000},
       ]
-      for (let i = 1; i < 13; i++) {
-        this.setState((state, props) => ({
-          produtosHome: [...state.produtosHome, { id: state.prodID + 1, name: `${produtosNomes[i - 1]} ${i < 10 ? `0${i}` : i}`, imgUrl: `https://picsum.photos/200/150?a=${i}`, price: 119.9 + (i * 19) }]
-          , prodID: state.prodID + 1
-        })
-        )
-      }
+      this.setState({produtosHome: produtosHomeNovo})
     }
   }
 
@@ -131,7 +124,7 @@ export default class App extends Component {
 
 
   ordenarProdutos = (event) => {
-    this.setState({ selectValue: event.target.value })
+    this.setState({selectValue: event.target.value})
   }
 
 
@@ -162,18 +155,19 @@ export default class App extends Component {
   render() {
     let produtosHomeNovo = this.state.produtosHome.filter((produto) => {
       // console.log(`produtosHomeNovo ${ produto.name}`)
-      if ((produto.price >= Number(this.state.valorMinimo) && produto.price <= Number(this.state.valorMaximo))
-        &&
-        (this.state.buscarProduto === '' || produto.name.toUpperCase().indexOf(this.state.buscarProduto.toUpperCase()) >= 0)) {
+      if((produto.price >= Number(this.state.valorMinimo) && produto.price <= Number(this.state.valorMaximo))
+          &&
+          (this.state.buscarProduto === '' || produto.name.toUpperCase().indexOf(this.state.buscarProduto.toUpperCase()) >= 0)) {
         return true
       } else {
         return false
       }
     })
 
-    this.state.selectValue === 'cresc' ?
-      produtosHomeNovo.sort() :
-      produtosHomeNovo.sort((a, b) => { return a - b })
+    //funções para ordenar os produtos na "Home" conforme a selação do botão "select"
+    this.state.selectValue === 'relevancia' && produtosHomeNovo.sort((a, b)=>{return a.id - b.id})
+    this.state.selectValue === 'cresc' && produtosHomeNovo.sort((a, b)=>{return a.price - b.price})
+    this.state.selectValue === 'decresc' && produtosHomeNovo.sort((a, b)=>{return b.price - a.price})
 
     const somas = this.soma()
 
@@ -188,12 +182,11 @@ export default class App extends Component {
           valorBusca={this.state.valorBusca}
         />
 
-
-
-
-        <Home produtosHome={produtosHomeNovo}
+        <Home
+          produtosHome={produtosHomeNovo}
           cartAdicionar={this.cartAdicionar}
-          ordenarProdutos={this.ordenarProdutos} />
+          ordenarProdutos={this.ordenarProdutos}
+        ></Home>
 
         {/* lógica de click */}
         {this.state.sidebarOpen ?
