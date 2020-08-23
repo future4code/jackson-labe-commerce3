@@ -7,6 +7,7 @@ import styled from 'styled-components'
 import { Home } from './Components/Home/Home';
 import Filtro from "./Components/Filtro/Filtro";
 
+
 // Estilização do botão
 const CartIcon = styled.div`
   display:flex;
@@ -63,8 +64,8 @@ export default class App extends Component {
     buscarProduto: '',
 
     prodID: 0,
-    selectValue: 'cresc',
-    done: undefined
+    selectValue: 'relevancia',
+    done: undefined,
   }
 
   componentDidMount() {
@@ -86,6 +87,7 @@ export default class App extends Component {
       ]
       this.setState({produtosHome: produtosHomeNovo})
     }
+
   }
 
   onChangeValorMin = (event) => {
