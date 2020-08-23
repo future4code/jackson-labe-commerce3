@@ -5,19 +5,15 @@ import { CardProduto } from '../CardProduto/CardProduto'
 
 const HomeBox = styled.main`
     box-sizing: border-box;
-    width: 80%;
+    width: 100%;
     display: grid;
     grid-template-rows: 50px auto;
     gap: 15px;
-    padding: 0 0 0 20px;
+    padding: 0 0 0 10px;
 `
 
 const HomeHeader = styled.div`
     box-sizing: border-box;
-    /* display:grid;
-    grid-template: 1fr/1fr 1fr;
-    justify-items: start;
-    align-items: center; */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -34,14 +30,25 @@ const HomeSelect = styled.select`
 const HomeQtd = styled.p`
     margin: 0;
     padding: 0;
+    font-size: calc(12px + 0.5vw);
+
 `
 
 const ProdBox = styled.div`
     box-sizing: border-box;
-    display: grid;
-    grid-template-columns: repeat(4,1fr);
-    gap: 15px;
     padding: 0 10px 10px 10px;
+    /* display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start; */
+
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    @media screen and (min-width:605px){grid-template-columns: repeat(2,1fr);}
+    @media screen and (min-width:880px){grid-template-columns: repeat(3,1fr);}
+    @media screen and (min-width:1145px){grid-template-columns: repeat(4,1fr);}
+    @media screen and (min-width:1500px){grid-template-columns: repeat(5,1fr);}
 `
 
 
@@ -79,8 +86,9 @@ export class Home extends React.Component {
         return(
             <HomeBox>
                 <HomeHeader>
-                    <HomeQtd>Quantidade de Produtos: {this.props.produtosHome.length}</HomeQtd>
+                    <HomeQtd>Produtos: {this.props.produtosHome.length}</HomeQtd>
                     <HomeSelect onChange={this.props.ordenarProdutos} name={'ordenarProdutos'}>
+                        <option value={'relevancia'}>Relevância</option>
                         <option value={'cresc'}>Preço: Crescente</option>
                         <option value={'decresc'}>Preço: Decrescente</option>
                     </HomeSelect>
