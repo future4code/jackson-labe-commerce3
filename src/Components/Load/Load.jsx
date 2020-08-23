@@ -16,7 +16,7 @@ class Load extends React.Component {
     componentDidMount() {
         setTimeout(() => {
             this.setState({ done: true })
-        }, 1400);
+        }, 2000);
     }
     render() {
         return (
