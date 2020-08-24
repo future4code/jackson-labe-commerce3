@@ -1,11 +1,11 @@
-import React, {Component } from 'react';
+import React, { Component } from 'react';
 import './App.css';
-import Cart from './Cart/Cart';
-import cart from './Cart/img/cart.png'
+import Cart from './Components/Cart/Cart';
+import cart from './Components/Cart/img/cart.png'
 import styled from 'styled-components'
 // import { CardProduto } from './CardProduto/CardProduto'
-import { Home } from './Home/Home';
-import Filtro from "./Filtro";
+import { Home } from './Components/Home/Home';
+import Filtro from "./Components/Filtro/Filtro";
 
 
 // Estilização do botão
@@ -65,24 +65,25 @@ export default class App extends Component {
 
     prodID: 0,
     selectValue: 'relevancia',
+    done: undefined,
   }
 
   componentDidMount() {
     //Caso ainda não tenhamos nenhum produto na página, 12 produtos ficticios serão adicionados
     if (this.state.produtosHome.length <= 0) {
       let produtosHomeNovo = [
-        { id: 1, name: `Uma Coisa`, imgUrl: `https://picsum.photos/200/150?a=1`, price: Math.random()*100},
-        { id: 2, name: `Esse é diferente`, imgUrl: `https://picsum.photos/200/150?a=2`, price: Math.random()*100 },
-        { id: 3, name: `Lorem Ipsum`, imgUrl: `https://picsum.photos/200/150?a=3`, price: Math.random()*100 },
-        { id: 4, name: `Mistica Escolha`, imgUrl: `https://picsum.photos/200/150?a=4`, price: Math.random()*100 },
-        { id: 5, name: `Super Surpresa`, imgUrl: `https://picsum.photos/200/150?a=5`, price: Math.random()*100 },
-        { id: 6, name: `Labenu Cargo Simples`, imgUrl: `https://picsum.photos/200/150?a=6`, price: Math.random()*100 },
-        { id: 7, name: `Tantra Feelings`, imgUrl: `https://picsum.photos/200/150?a=7`, price: Math.random()*100 },
-        { id: 8, name: `Veste Bem`, imgUrl: `https://picsum.photos/200/150?a=8`, price: Math.random()*100 },
-        { id: 9, name: `Super Nova`, imgUrl: `https://picsum.photos/200/150?a=9`, price: Math.random()*100 },
-        { id: 10, name: `Massachusets Core`, imgUrl: `https://picsum.photos/200/150?a=10`, price: Math.random()*100 },
-        { id: 11, name: `Beach Style Yoga`, imgUrl: `https://picsum.photos/200/150?a=11`, price: Math.random()*100 },
-        { id: 12, name: `Birthday Choice`, imgUrl: `https://picsum.photos/200/150?a=12`, price: Math.random()*100 },
+        { id: 1, name: `Uma Coisa`, imgUrl: `https://picsum.photos/200/150?a=1`, price: Math.random()*1000},
+        { id: 2, name: `Esse é diferente`, imgUrl: `https://picsum.photos/200/150?a=2`, price: Math.random()*1000 },
+        { id: 3, name: `Lorem Ipsum`, imgUrl: `https://picsum.photos/200/150?a=3`, price: Math.random()*1000},
+        { id: 4, name: `Mistica Escolha`, imgUrl: `https://picsum.photos/200/150?a=4`, price: Math.random()*1000},
+        { id: 5, name: `Super Surpresa`, imgUrl: `https://picsum.photos/200/150?a=5`, price: Math.random()*1000},
+        { id: 6, name: `Labenu Cargo Simples`, imgUrl: `https://picsum.photos/200/150?a=6`, price: Math.random()*1000},
+        { id: 7, name: `Tantra Feelings`, imgUrl: `https://picsum.photos/200/150?a=7`, price: Math.random()*1000},
+        { id: 8, name: `Veste Bem`, imgUrl: `https://picsum.photos/200/150?a=8`, price: Math.random()*1000},
+        { id: 9, name: `Super Nova`, imgUrl: `https://picsum.photos/200/150?a=9`, price: Math.random()*1000},
+        { id: 10, name: `Massachusets Core`, imgUrl: `https://picsum.photos/200/150?a=10`, price: Math.random()*1000},
+        { id: 11, name: `Beach Style Yoga`, imgUrl: `https://picsum.photos/200/150?a=11`, price: Math.random()*1000},
+        { id: 12, name: `Birthday Choice`, imgUrl: `https://picsum.photos/200/150?a=12`, price: Math.random()*1000},
       ]
       this.setState({produtosHome: produtosHomeNovo})
     }
@@ -128,7 +129,7 @@ export default class App extends Component {
     this.setState({selectValue: event.target.value})
   }
 
-  
+
   cartExcluir = (id) => {
     const produtosCartNovo = [...this.state.produtosCart]
 
@@ -165,7 +166,7 @@ export default class App extends Component {
       }
     })
 
-   //funções para ordenar os produtos na "Home" conforme a selação do botão "select"
+    //funções para ordenar os produtos na "Home" conforme a selação do botão "select"
     this.state.selectValue === 'relevancia' && produtosHomeNovo.sort((a, b)=>{return a.id - b.id})
     this.state.selectValue === 'cresc' && produtosHomeNovo.sort((a, b)=>{return a.price - b.price})
     this.state.selectValue === 'decresc' && produtosHomeNovo.sort((a, b)=>{return b.price - a.price})
@@ -182,8 +183,6 @@ export default class App extends Component {
           valorMax={this.state.valorMaximo}
           valorBusca={this.state.valorBusca}
         />
-
-
 
         <Home
           produtosHome={produtosHomeNovo}
